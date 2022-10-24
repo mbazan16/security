@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
+<title>Libros</title>
+</head>
+<body>
+<div id="content">
+		<p id="top">Bienvenido a la librería</p>
+		<p id="topleft"><a href="/logout">Exit</a></p>
+	<div id="logo">
+		<h1><a href="/libros">Librería</a></h1>
+	</div>
+	<div class="line"></div>
+
+	<h1>Si desea insertar un nuevo libro a nuestro catalogo, pulse el siguiente enlace</h1><br/>	
+	<h3><a href="/nuevoLibro">Insertar nuevo libro</a></h3><br/>
+	<div class="line"></div>
+
+
+	<div class="left">
+	<h2>Tambien puede realizar busquedas por diferentes parametros</h2>
+	<br/>
+	
+	<form action="/mostrarPorTitulo" method="get">
+		<h3>Buscar libro por titulo</h3>
+		<p>
+			<b>Insertar titulo: </b> <input type='text' name='titulo' />
+			<input type='submit' name='buscarTitulo' value='Buscar' />
+		</p>
+		
+	</form>
+
+	<form action="/mostrarPorAutor" method="get">
+		<h3>Buscar libro por autor (Exacta)</h3>
+		<p>
+			<b>Insertar autor: </b> <input type='text' name='autor' />
+			<input type='submit' name='buscarAutor' value='Buscar' />
+		</p>
+		
+	</form>	
+	
+	</div>
+		
+	<div class="right">
+	<h4>Este es nuestro catalogo</h4>
+	<p th:each="libro : ${libros}">
+		<span th:text="'Titulo: ' + ${libro.titulo}"></span><br/>
+		<span th:text="'Autores: '+ ${libro.autor}"></span><br/>
+		<a th:href="@{/mostrarPorTitulo(titulo=${libro.titulo})}">Ver</a>
+	</p>
+	</div>
+</div>
+</body>
+</html>

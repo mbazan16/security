@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
+
+</head>
+<body>
+	<div id="content">
+		<p id="topleft"><a href="/logout">Exit</a></p>
+		
+	<div id="logo">
+		<h1><a href="index.html">Librería</a></h1>
+	</div>
+	<div class="line"></div>
+
+	<h4>Insertar nuevo libro al catalogo</h4>
+	
+	<form action="/insertar" method="post">
+		<h1>Datos del libro</h1>
+		<br/>
+		<h3>Editorial: <select name="nombre"> 
+				<option th:if="editorial.id != null" th:each="editorial : ${editoriales}"
+					th:value="${editorial.nombre}" th:text="${editorial.nombre}"></option>
+			</select> </h3>
+			<h3><a href="/nuevaEditorial">Registrar nueva editorial</a></h3>
+		<p>
+			<h3><b>Autor:</b> <input type='text' name='autor' /></h3>
+	    </p>
+		<p>
+			<h3><b>Titulo:</b> <input type='text' name='titulo' /></h3>
+	    </p>		
+		
+		<input type='submit' name='insertar' value='Insertar' />
+	</form>
+<br/>
+<h3><a href="/libros">Volver</a></h3>
+</div>
+</body>
+</html>

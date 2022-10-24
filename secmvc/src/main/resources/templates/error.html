@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/screen.css"
+	media="screen" />
+<title>Error</title>
+</head>
+<body>
+	<div id="content">
+		
+		<div id="logo">
+			<h1>
+				<a href="/">Librería</a>
+			</h1>
+		</div>
+		<div class="line"></div>
+		<p>
+				<h3>Lo sentimos pero se ha producido un error en el sistema</h3>
+		</p>
+		<p>
+				<span th:text="'Error ' + ${statusCode}"></span><br/>
+				<span th:text="${message}"></span><br/>
+		</p>
+		<p>
+		Pulse <a href="/">aquí</a> para volver a la pantalla de inicio.
+		</p>
+	</div>
+</body>
+</html>

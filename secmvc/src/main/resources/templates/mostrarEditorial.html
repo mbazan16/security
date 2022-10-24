@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="css/screen.css" media="screen" />
+
+</head>
+<body>
+	<div id="content">
+		<p id="topleft"><a href="/logout">Exit</a></p>
+		
+	<div id="logo">
+		<h1><a href="index.html">Librería</a></h1>
+	</div>
+	<div class="line"></div>
+
+	<p th:each="libro : ${libros}">
+		<h4>Datos de la editorial</h4>
+		<p>
+			<span th:text="'Nombre editorial:' + ${libro.editorial.nombre}" /> <a href="/modificar.html">Modificar</a> <br/>
+			<span th:text="'Telefono editorial:' + ${libro.editorial.telefono}" /> <a href="/modificar.html">Modificar</a> <br/>
+			<span th:text="'Email de contacto de la editorial:' + ${libro.editorial.email}" /> <a href="/modificar.html">Modificar</a> <br/>
+			
+		</p>
+		
+	</p>
+
+	<h3><a href="/libros">Volver</a></h3>
+	
+</body>
+</html>

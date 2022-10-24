@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="/css/screen.css" media="screen" />
+
+</head>
+<body>
+	<div id="content">
+		<p id="topleft"><a href="/logout">Exit</a></p>
+		
+	<div id="logo">
+		<h1><a href="index.html">Librería</a></h1>
+	</div>
+	<div class="line"></div>
+
+	<form action="/modificar" method="post">
+	   <input type='hidden' th:field="${libro.id}"/>
+		<h4><b>Datos del libro</b></h4>
+		  <p>
+			<h3><b>Autor:</b> <input type='text' th:field="${libro.autor}"/></h3>
+		  </p>
+		  <p>
+		
+		
+			<h3><b>Titulo:</b> <input type='text' th:field="${libro.titulo}" /> </h3>
+		
+		 </p>
+		  <p>
+		
+		
+		
+			<h3><b>Nombre de la editorial:</b> <select name="nombre"> 
+				<option th:if="editorial.id != null" th:each="editorial : ${editoriales}"
+					th:value="${editorial}" th:text="${editorial.nombre}"
+					th:selected="${libro.editorial.id==editorial.id}"></option>
+			</select>
+			</h3>
+		</p>
+		
+		
+		<input type='submit' name='modificar' value='Modificar' /> 
+	</form>
+	<br/>
+	<h3><a href="/libros">Volver</a></h3>
+	</div>
+</body>
+</html>
