@@ -1,0 +1,14 @@
+Este proyecto es un ejemplo de integración básica de seguridad
+Simplemente se incluye la dependencia:
+
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+Y se implementa un controlador básico "MiController"
+Al ejecutarse (se configura el puerto 8083) se muestra la pantalla de login.
+Nos podemos logar con los siguientes valores:
+username: user
+password: <la password que se nos muestra en las trazas de consola al arrancar la aplicación>
+
