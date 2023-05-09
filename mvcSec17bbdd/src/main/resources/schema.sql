@@ -1,4 +1,4 @@
-CREATE TABLE users (
+/*CREATE TABLE users (
   username VARCHAR(50) NOT NULL,
   password VARCHAR(100) NOT NULL,
   enabled TINYINT NOT NULL DEFAULT 1,
@@ -12,7 +12,7 @@ CREATE TABLE authorities (
 );
  
 CREATE UNIQUE INDEX ix_auth_username
-  on authorities (username,authority);
+  on authorities (username,authority);*/
   
  CREATE TABLE Editorial (
   id NUMBER NOT NULL,

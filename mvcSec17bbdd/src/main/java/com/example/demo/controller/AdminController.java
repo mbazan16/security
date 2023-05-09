@@ -16,13 +16,13 @@ public class AdminController {
 	@GetMapping
 	public String miMetodo() {
 		log.info("[miMetodo]");
-		return "index";
+		return "admin";
 	}
 	
 	
 	@PostMapping
 	public String miMetodoPost() {
 		log.info("[miMetodoPost]");
-		return "index";
+		return "admin";
 	}
 }

@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Indice</title>
-    </head>
-    <body>
-        <h2>Bienvenida</h2>
-        <p>Ejemplo de utilización de seguridad con spring security y thymeleaf</p>
-        <div sec:authorize="hasRole('USER')">Texto para los usuarios.</div>
-        <div sec:authorize="hasRole('ADMIN')">Texto para los administradores.</div>
-        <div sec:authorize="isAuthenticated()">
-            Texto para los que estan autenticados
-        </div>
-        Username:
-        <div sec:authentication="name"></div>
-        Roles:
-        <div sec:authentication="principal.authorities"></div>
-    </body>
+<head>
+<title>Indice</title>
+</head>
+<body>
+	<h2>Bienvenida</h2>
+	<p>Ejemplo de utilización de seguridad con spring security y
+		thymeleaf</p>
+	<div sec:authorize="hasRole('USER')">Texto para los usuarios.</div>
+	<div sec:authorize="hasRole('ADMIN')">Texto para los administradores.</div>
+	<div sec:authorize="isAuthenticated()">Texto para los que estan	autenticados.
+	 <a th:href="@{/logout}">Logout</a>
+	</div>
+	Username:
+	<div sec:authentication="name"></div>
+	Roles:
+	<div sec:authentication="principal.authorities"></div>
+	
+	<h2>Admin</h2>
+	<a th:href="@{/admin}">Ver pagina de admin</a>
+
+</body>
 </html>

@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,55 +27,26 @@ public UserDetailsManager users(DataSource dataSource) {
 		}
 	
 
- @Bean
- public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-     http
-         .authorizeHttpRequests((authz) -> authz
-             .requestMatchers("/css/**").permitAll()
-             .requestMatchers("/js/**").permitAll()
-             .requestMatchers("/img/**").permitAll()
-             .requestMatchers("/h2-console/**").hasRole("ADMIN")
-             .anyRequest().authenticated()
-         )
-         .formLogin((form) -> form
-        		 .loginPage("/login")
- 				//.loginProcessingUrl("/login")
-        	     .failureUrl("/login?error=true")
- 				.successForwardUrl("/user")
- 				.permitAll()
- 			)
-        .exceptionHandling()
-        .accessDeniedPage("/accessDenied")
-        .and()
- 		.logout((logout) -> logout.permitAll());
-     return http.build();
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	http
+	.csrf().disable()
+    .authorizeHttpRequests((authz) -> authz
+			.requestMatchers(HttpMethod.GET, "/css/**", "/js/**", "/img/**").permitAll()
+			.requestMatchers("/admin/**").hasAnyRole("ADMIN")
+			.requestMatchers("/h2-console/**").hasAnyRole("ADMIN")
+			.anyRequest().authenticated())
+    		.headers(headers -> headers.frameOptions().sameOrigin())
+			.formLogin((form) -> form.loginPage("/login")
+					// .loginProcessingUrl("/login")
+					.failureUrl("/loginError")
+					.successForwardUrl("/user").permitAll())
+			.exceptionHandling().accessDeniedPage("/accessDenied")
+			.and()
+			.logout((logout) -> logout.permitAll());
+	return http.build();
      
-   /*  http
-		.csrf().disable()
-		.authorizeRequests()
-		.antMatchers("/css/**").permitAll()  
-		.antMatchers("/h2-console/**").hasRole("ADMIN")
-	//	.antMatchers(HttpMethod.POST,"/libros").hasRole("ADMIN")
-		.anyRequest().authenticated()
-		.and()
-     .formLogin()
-     .loginPage("/login")
-     .permitAll()
-     .defaultSuccessUrl("/libros",true)
-     .failureUrl("/login?error=true")
-     .usernameParameter("user")
-     .passwordParameter("pass")
-     .and()
-     .logout()
-     .deleteCookies("JSESSIONID")        
-		.and()
-		.headers().frameOptions().disable()
-		.and()
-		.exceptionHandling()
-		.accessDeniedPage("/accessDenied")
-		.accessDeniedHandler(customAccessDeniedHandler);*/
- }
-
+}
      
      @Bean
      public PasswordEncoder passwordEncoder() {
