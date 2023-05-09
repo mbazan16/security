@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Administrador</title>
+</head>
+<body>
+	<h2>Bienvenido Administrador</h2>
+	
+	Username:
+	<div sec:authentication="name"></div>
+	Roles:
+	<div sec:authentication="principal.authorities"></div>
+	<div sec:authorize="hasRole('ADMIN')">
+		<h2>Consola H2</h2>
+		<a th:href="@{/h2-console}">Ver Consola H2</a>
+		<h2>Volver a Index</h2>
+		<a th:href="@{/}">Volver</a>
+	</div>
+
+</body>
+</html>

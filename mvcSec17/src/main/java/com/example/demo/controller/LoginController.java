@@ -17,11 +17,16 @@ public class LoginController {
 	  @RequestMapping("/loginError")
 	  public String loginError(Model model) {
 	    model.addAttribute("loginError", true);
-	    return "login.html";
+	    return "login";
 	  }
 	  
 	  @RequestMapping("/accessDenied")
 		public String accessDenied() {
 			return "accessDenied";
-		}
+	  }
+	  
+	  @RequestMapping("/logout")
+		public String logout() {
+			return "login";
+	  }
 }
