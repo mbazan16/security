@@ -1,1 +1,9 @@
-Configuracion básica de seguridad MVC, ahora mismo el proyecto no funciona
+Configuracion básica de seguridad MVC
+
+Para poder acceder desde las plantillas a los datos de seguridad hay que incluir
+también  la dependencia:
+
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
